@@ -90,3 +90,64 @@ section#conteudo-view form input[type='submit']:hover{
     transition: 0.2s;
     border: 2px solid cyan;
 }
+
+
+/* MANU LATERAL */
+
+#principal{
+    position: fixed;
+    float: left;
+    width: 280px;
+    height: 100%;
+    background-color: #006086;
+    color: white;
+    border-right: 1px dashed #006086;
+    box-shadow: 0 0 15px black;
+}
+
+#principal ul{
+}
+
+#principal ul li{
+
+    float: left;
+    width: 100%;
+}
+#principal ul li:hover{
+    background-color: white;
+    transition: 0.5s;
+}
+
+#principal ul li a{
+    color: white;
+    float: left;
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid white;
+}
+
+#principal ul li a:hover{
+
+    color: black;
+    transition: 0.5s;    
+}
+
+#principal ul li a i{
+    float: left;
+    height: 80px;
+    width: 80px;
+    color: inherit;
+    text-align: center;
+    line-height: 80px;
+    font-size: 60px;
+    
+}
+
+#principal ul li a h3{
+    margin-top: 25px;
+    float: left;
+    height: 80px;
+    font: 1em 'fredoka one', cursive;
+    color: inherit;
+    
+}

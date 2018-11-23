@@ -7,6 +7,7 @@ use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use App\Validators\UserVal;
 use Auth;
+use Exception;
 
 class DashboardController extends Controller
 {
@@ -21,7 +22,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return "Estamos na index(dashboard)";
+        return view('user.dashboard');
     }
     
     public function auth(Request $request)
@@ -30,21 +31,30 @@ class DashboardController extends Controller
             'email'    => $request->get('username'),
             'password' => $request->get('password')
         ];
-
         
-        if (Auth::attempt(['email' => $request->get('username'), 'password' => $request->get('password')])){
-            echo "sim";
-        } else {
-            echo "no";
-        }
-
         try {
 
-            Auth::attempt($data, false);
+            if(env('PASSWORD_HASH'))
+            {
+                Auth::attempt($data, false);
+            }
+            else 
+            {
+                $user = $this->repository->findWhere(['email' => $data['email']])->first();
+
+                if(!$user)
+                    throw new Exception('Email informado Invalidas');
+                    
+                if($user->password != ($data['password']))
+                    throw new Exception('senha informada Invalidas');
+                
+                    Auth::login($user);
+            }
+            
 
             return redirect()->route('user.dashboard');
         
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             return $e->getMessage();
         }

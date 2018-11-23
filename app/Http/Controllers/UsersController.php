@@ -48,6 +48,7 @@ class UsersController extends Controller
      */
     public function index()
     {
+       /*
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $users = $this->repository->all();
 
@@ -59,6 +60,8 @@ class UsersController extends Controller
         }
 
         return view('users.index', compact('users'));
+        */
+        return view('user.index');
     }
 
     /**
